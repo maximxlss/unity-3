@@ -27,15 +27,32 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         rb.velocity = (position - rb.position) * strafeSpeed;
+        GameObject.Find("Particle System").transform.position = this.transform.position;
     }
 
     void OnTurnleft()
     {
-        state = Math.Max(0, state-1);
+        state = Math.Max(0, state - 1);
     }
     
     void OnTurnright()
     {
         state = Math.Min(2, state+1);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.gameObject.tag);
+        if (collision.collider.gameObject.CompareTag("deg"))
+        {
+            GameObject.Find("Particle System").GetComponent<ParticleSystem>().Play();
+            Destroy(this.gameObject);
+        }
+        else if (collision.collider.gameObject.CompareTag("Player"))
+        {
+            state = Math.Max(0, state - 1);        
+        }
+            
+        
     }
 }
