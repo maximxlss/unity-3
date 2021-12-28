@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float strafeSpeed;
     public float runSpeed;
     public Transform[] targets;
+    private bool ismovable = true;
 
     void Start()
     {
@@ -28,7 +29,10 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         rb.velocity = (position - rb.position) * strafeSpeed;
-        GameObject.Find("Particle System").transform.position = this.transform.position;
+        if (ismovable)
+        {
+            GameObject.Find("Particle System").transform.position = this.transform.position;
+        }
     }
 
     void OnTurnleft()
@@ -48,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
             this.GetComponent<MeshRenderer>().enabled=false;
             this.GetComponent<SphereCollider>().enabled=false;
             GameObject.Find("Particle System").GetComponent<ParticleSystem>().Play();
+            ismovable = false;
             Invoke(nameof(Restart), 1f);
         }
         else if (collision.collider.gameObject.CompareTag("Player"))

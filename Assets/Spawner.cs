@@ -16,6 +16,7 @@ public class Spawner : MonoBehaviour
     private GameManager gm;
     void Start()
     {
+        maxparts = 15;
         rb = this.GetComponent<Rigidbody>();
         gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
     }
