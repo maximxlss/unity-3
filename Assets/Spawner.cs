@@ -13,9 +13,11 @@ public class Spawner : MonoBehaviour
     private bool spawned;
     private Rigidbody rb;
     public GameObject[] src;
+    private GameManager gm;
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
+        gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -43,7 +45,7 @@ public class Spawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (src.Length != 0)
+        if (src.Length != 0 && gm.started)
         {
             rb.MovePosition(rb.position + new Vector3(0, 0, -speed)*Time.deltaTime);
         }

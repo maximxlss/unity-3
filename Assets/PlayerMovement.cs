@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -42,11 +43,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.tag);
         if (collision.collider.gameObject.CompareTag("deg"))
         {
+            this.GetComponent<MeshRenderer>().enabled=false;
+            this.GetComponent<SphereCollider>().enabled=false;
             GameObject.Find("Particle System").GetComponent<ParticleSystem>().Play();
-            Destroy(this.gameObject);
+            Invoke(nameof(Restart), 1f);
         }
         else if (collision.collider.gameObject.CompareTag("Player"))
         {
@@ -55,4 +57,10 @@ public class PlayerMovement : MonoBehaviour
             
         
     }
-}
+    private void Restart()
+    {
+        Debug.Log("GameOver");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
+    }
+}   
