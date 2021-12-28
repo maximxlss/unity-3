@@ -1,66 +1,41 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rb;
+    public int state = 1;
+    public Vector3 position;
 
-    public float strafeSpeed = 500f;
-    public float runSpeed = 200f;
-    private float speedFrontward = 1000f;
+    public float strafeSpeed;
+    public float runSpeed;
+    public Transform[] targets;
 
-    protected bool strafeLeft = false;
-    protected bool strafeRight = false;
-    protected bool Strafe = false;
+    void Start()
+    {
+        rb = this.GetComponent<Rigidbody>();
+        rb.position = targets[1].position;
+    }
 
     void Update()
     {
-        if (Input.GetKey("d"))
-        {
-            strafeRight = true;
-        }
-        else
-        {
-            strafeRight = false;
-        }
-        if (Input.GetKey("a"))
-        {
-            strafeLeft = true;
-        }
-        else
-        {
-            strafeLeft = false;
-        }
-        if (Input.GetKey("space"))
-        {
-            Strafe = true;
-        }
-        else
-        {
-            Strafe = false;
-        }
+        position = targets[state].position;
     }
+    
     void FixedUpdate()
     {
-        rb.AddForce(0, 0, runSpeed * Time.deltaTime);
-
-        if (strafeLeft)
-        {
-            rb.AddForce(-strafeSpeed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
-        }
-        if (strafeRight)
-        {
-            rb.AddForce(strafeSpeed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
-        }
-        if (Strafe)
-        {
-            rb.AddForce(0, 0, speedFrontward * Time.deltaTime);
-        }
-        if (transform.position.x >= 2.962)
-        {
-            strafeRight = false;
-        }
+        rb.velocity = (position - rb.position) * strafeSpeed;
     }
 
+    void OnTurnleft()
+    {
+        state = Math.Max(0, state-1);
+    }
+    
+    void OnTurnright()
+    {
+        state = Math.Min(2, state+1);
+    }
 }
