@@ -9,11 +9,12 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
     public int state = 1;
     public Vector3 position;
-
     public float strafeSpeed;
     public float runSpeed;
     public Transform[] targets;
     private bool ismovable = true;
+    public bool addwatch;
+    private int scaling = 2;
 
     void Start()
     {
@@ -47,7 +48,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.CompareTag("deg"))
+        var other = collision.collider.gameObject;
+        if (other.CompareTag("deg"))
         {
             this.GetComponent<MeshRenderer>().enabled=false;
             this.GetComponent<SphereCollider>().enabled=false;
@@ -55,9 +57,20 @@ public class PlayerMovement : MonoBehaviour
             ismovable = false;
             Invoke(nameof(Restart), 1f);
         }
-        else if (collision.collider.gameObject.CompareTag("Player"))
+        else if (other.CompareTag("Player"))
         {
             state = Math.Max(0, state - 1);        
+        }
+        else if (other.CompareTag("portal"))
+        {
+            
+            foreach (var col in other.GetComponentsInChildren<Collider>())
+            {
+                col.enabled = false;
+            }
+            transform.localScale = new Vector3(scaling,scaling,scaling);
+            var prt = GameObject.FindGameObjectsWithTag("portal");
+            scaling += 1;
         }
             
         
@@ -65,7 +78,15 @@ public class PlayerMovement : MonoBehaviour
     private void Restart()
     {
         Debug.Log("GameOver");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (addwatch == false)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);    
+        }
+        else
+        {
+            
+        }
+            
         
     }
 }   
