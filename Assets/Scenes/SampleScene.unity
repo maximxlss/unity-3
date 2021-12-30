@@ -633,7 +633,7 @@ GameObject:
   - component: {fileID: 890008581}
   - component: {fileID: 890008580}
   m_Layer: 0
-  m_Name: Anal
+  m_Name: offscreendestroyer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
