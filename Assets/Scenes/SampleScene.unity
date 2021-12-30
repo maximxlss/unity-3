@@ -1159,8 +1159,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxparts: 15
-  speed: 10
-  acceleration: 0.05
+  speed: 15
+  acceleration: 0.2
 --- !u!4 &1376261099
 Transform:
   m_ObjectHideFlags: 0
