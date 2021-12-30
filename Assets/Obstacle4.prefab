@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5383737346225662070}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.05, y: 1.8, z: -7.777469}
-  m_LocalScale: {x: 0.114884615, y: 1.0614, z: 0.1439}
+  m_LocalPosition: {x: -0.27000427, y: 1.8795426, z: -2.9859824}
+  m_LocalScale: {x: 0.114884615, y: 1.0614003, z: 0.14390004}
   m_Children: []
   m_Father: {fileID: 176767385275332618}
   m_RootOrder: 3
@@ -123,7 +123,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5383737346677312374}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.22, y: -0.07954264, z: -4.7914867}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 9.396358, y: 1, z: 18.615171}
   m_Children: []
   m_Father: {fileID: 176767385275332618}
@@ -218,8 +218,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5383737347732585255}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.71, y: 1.8, z: -7.64}
-  m_LocalScale: {x: 0.114884615, y: 1.0614, z: 0.1439}
+  m_LocalPosition: {x: -1.9300003, y: 1.8795426, z: -2.8485131}
+  m_LocalScale: {x: 0.114884615, y: 1.0614003, z: 0.14390004}
   m_Children: []
   m_Father: {fileID: 176767385275332618}
   m_RootOrder: 2
@@ -314,8 +314,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5383737347757218797}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.73, y: 1.8, z: -0.97}
-  m_LocalScale: {x: 0.114884615, y: 1.0614, z: 0.1439}
+  m_LocalPosition: {x: 1.5100021, y: 1.8795426, z: 3.8214865}
+  m_LocalScale: {x: 0.114884615, y: 1.0614003, z: 0.14390004}
   m_Children: []
   m_Father: {fileID: 176767385275332618}
   m_RootOrder: 1
@@ -394,6 +394,7 @@ GameObject:
   - component: {fileID: 176767385275332618}
   - component: {fileID: 5383737346690989467}
   - component: {fileID: 5383737346690989464}
+  - component: {fileID: 1409405921391280934}
   m_Layer: 0
   m_Name: Obstacle4
   m_TagString: FloorPart
@@ -409,7 +410,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7428268305302802512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -85.79, y: 0.07954264, z: 13.578486}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5383737346677312369}
@@ -431,8 +432,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed47973fa8abe647bfa7c885e311905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  maxparts: 10
   src: []
 --- !u!54 &5383737346690989464
 Rigidbody:
@@ -450,3 +449,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1409405921391280934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7428268305302802512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed47973fa8abe647bfa7c885e311905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  src: []

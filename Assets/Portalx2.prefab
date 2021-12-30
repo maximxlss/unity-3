@@ -310,7 +310,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7691868970816175266}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 1.399, z: -7.777469}
+  m_LocalPosition: {x: 1.7799988, y: 1.4785427, z: -2.9859824}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7691868971191277336}
@@ -455,7 +455,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7691868971327883265}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.22, y: -0.07954264, z: -4.7914867}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 9.396358, y: 1, z: 18.615171}
   m_Children: []
   m_Father: {fileID: 8353859081526394449}
@@ -534,6 +534,7 @@ GameObject:
   - component: {fileID: 8353859081526394449}
   - component: {fileID: 7691868969652155054}
   - component: {fileID: 7691868969652155049}
+  - component: {fileID: 5059197812308281024}
   m_Layer: 0
   m_Name: Portalx2
   m_TagString: FloorPart
@@ -549,7 +550,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8613541470187292596}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -95.66, y: 0.07954264, z: 13.578486}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7691868971327883270}
@@ -569,8 +570,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed47973fa8abe647bfa7c885e311905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  maxparts: 10
   src: []
 --- !u!54 &7691868969652155049
 Rigidbody:
@@ -588,3 +587,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5059197812308281024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613541470187292596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed47973fa8abe647bfa7c885e311905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  src: []
