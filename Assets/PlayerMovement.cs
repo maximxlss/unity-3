@@ -15,11 +15,13 @@ public class PlayerMovement : MonoBehaviour
     private bool ismovable = true;
     public bool addwatch;
     private int scaling = 2;
+    private GameManager gm;
 
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
         rb.position = targets[1].position;
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void Update()
@@ -55,7 +57,8 @@ public class PlayerMovement : MonoBehaviour
             this.GetComponent<SphereCollider>().enabled=false;
             GameObject.Find("Particle System").GetComponent<ParticleSystem>().Play();
             ismovable = false;
-            Invoke(nameof(Restart), 1f);
+            gm.playing = false;
+            Invoke(nameof(Restart), 3f);
         }
         else if (other.CompareTag("Player"))
         {

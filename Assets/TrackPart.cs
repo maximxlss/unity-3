@@ -14,6 +14,7 @@ public class TrackPart : MonoBehaviour
     private bool spawned;
     private Rigidbody rb;
     private GameManager gm;
+    private Vector3 initPos;
     
     void Awake()
     {
@@ -33,13 +34,13 @@ public class TrackPart : MonoBehaviour
             {
                 var x = Random.Range(0, src.Length);
                 var choice = src[x];
-                var newpos = this.transform.position;
-                newpos += new Vector3(0, 0, this.GetComponentInChildren<BoxCollider>().bounds.size.z-0.1f);
                 var obj = Instantiate(choice, Vector3.zero, Quaternion.identity);
-                obj.GetComponent<TrackPart>().src = src;
+                var objb = obj.GetComponent<TrackPart>();
+                objb.src = src;
                 var offset1 = this.transform.Find("Floor").GetComponent<BoxCollider>().bounds.size.z / 2f;
                 var offset2 = obj.transform.Find("Floor").GetComponent<BoxCollider>().bounds.size.z / 2f;
-                obj.transform.position = this.transform.position + Vector3.forward * (offset1 + offset2);
+                objb.initPos = this.initPos + Vector3.forward * (offset1 + offset2);
+                obj.transform.position = objb.initPos;
                 spawned = true;
             }
         }
@@ -47,9 +48,9 @@ public class TrackPart : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (gm.playing)
-        {
-            rb.MovePosition(rb.position + new Vector3(0, 0, -speed)*Time.deltaTime);
-        }
+        if (!gm.playing)
+            return;
+        // TODO: prevent infinite initPos growth
+        rb.MovePosition(initPos + Vector3.back * speed * gm.time);
     }
 }

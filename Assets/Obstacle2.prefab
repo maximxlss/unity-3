@@ -394,7 +394,6 @@ GameObject:
   - component: {fileID: 793991939297202202}
   - component: {fileID: 4974589108927479829}
   - component: {fileID: 4974589108927479830}
-  - component: {fileID: 1614955024255889356}
   m_Layer: 0
   m_Name: Obstacle2
   m_TagString: FloorPart
@@ -449,16 +448,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1614955024255889356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8986903822623319431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ed47973fa8abe647bfa7c885e311905, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  src: []
