@@ -14,8 +14,7 @@ public class GameManager : MonoBehaviour
         if (!playing)
         {
             playing = true;
-            GameObject.Find("Text").SetActive(false); 
+            GameObject.Find("Text").SetActive(false);
         }
-        
     }
 }

@@ -32,7 +32,6 @@ public class TrackPart : MonoBehaviour
             if (gos.Length < maxparts)
             {
                 var x = Random.Range(0, src.Length);
-                Debug.Log(x);
                 var choice = src[x];
                 var newpos = this.transform.position;
                 newpos += new Vector3(0, 0, this.GetComponentInChildren<BoxCollider>().bounds.size.z-0.1f);
