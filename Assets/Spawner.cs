@@ -36,7 +36,7 @@ public class Spawner : MonoBehaviour
                 }
                 var choice = src[(int)Math.Floor((double)x)];
                 var newpos = this.transform.position;
-                newpos += new Vector3(0, 0, choice.GetComponentInChildren<BoxCollider>().bounds.size.z-0.1f);
+                newpos += new Vector3(0, 0, this.GetComponentInChildren<BoxCollider>().bounds.size.z-0.1f);
                 var notold = Instantiate(choice, newpos, Quaternion.identity);
                 notold.GetComponent<Spawner>().src = src;
                 spawned = true;
