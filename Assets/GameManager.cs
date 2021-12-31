@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [NonSerialized] public float score;
     [NonSerialized] public bool playing;
     private float startTime;
+    private bool end;
 
     private void Update()
     {
@@ -20,12 +21,13 @@ public class GameManager : MonoBehaviour
             // speed += acceleration * Time.deltaTime;
             score += speed * Time.deltaTime;
             time = Time.timeSinceLevelLoad - startTime;
+            end = true;
         }
     }
 
     void OnTap()
     {
-        if (!playing)
+        if (!playing && end==false)
         {
             playing = true;
             GameObject.Find("Tap to play").SetActive(false);

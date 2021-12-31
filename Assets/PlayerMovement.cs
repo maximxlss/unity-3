@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private int scaling = 2;
     private GameManager gm;
 
+
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -47,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     {
         state = Math.Min(2, state+1);
     }
+    
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -59,10 +61,6 @@ public class PlayerMovement : MonoBehaviour
             ismovable = false;
             gm.playing = false;
             Invoke(nameof(Restart), 3f);
-        }
-        else if (other.CompareTag("Player"))
-        {
-            state = Math.Max(0, state - 1);        
         }
         else if (other.CompareTag("portal"))
         {
