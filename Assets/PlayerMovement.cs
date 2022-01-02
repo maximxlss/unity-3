@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public float strafeSpeed;
     public float partsOffset;
+    public float flashFreq;
+    public float invincibilityTime;
     public Transform[] targets;
     public GameObject partPrefab;
     private Rigidbody rb;
@@ -16,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 position;
     private GameManager gm;
     private Stack<GameObject> parts = new Stack<GameObject>();
+    private float invincibilityStart;
+    private bool invincible;
     
     void Start()
     {
@@ -45,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollision(Collision collision)
     {
-        if (!gm.playing)
+        if (!gm.playing || invincible)
             return;
         var other = collision.collider.gameObject;
         if (other.CompareTag("deg"))
@@ -54,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
             Destroy(parts.Pop());
             if (parts.Count == 0)
                 Die();
+            StartCoroutine(Invincibility());
         }
         else if (other.CompareTag("portal"))
         {
@@ -63,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
             }
             parts.Push(Instantiate(partPrefab, this.transform));
             parts.Peek().transform.localPosition = Vector3.back * partsOffset * (parts.Count - 1);
+            StartCoroutine(Invincibility());
         }
     }
     
@@ -86,5 +92,35 @@ public class PlayerMovement : MonoBehaviour
     private void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    
+    private IEnumerator Invincibility()
+    {
+        invincible = true;
+        invincibilityStart = Time.timeSinceLevelLoad;
+        while (Time.timeSinceLevelLoad - invincibilityStart <= invincibilityTime)
+        {
+            Hide();
+            yield return new WaitForSeconds(1f / flashFreq);
+            Show();
+            yield return new WaitForSeconds(1f / flashFreq);
+        }
+        invincible = false;
+    }
+
+    private void Hide()
+    {
+        foreach (var mshrend in this.GetComponentsInChildren<MeshRenderer>())
+        {
+            mshrend.enabled = false;
+        }
+    }
+    
+    private void Show()
+    {
+        foreach (var mshrend in this.GetComponentsInChildren<MeshRenderer>())
+        {
+            mshrend.enabled = true;
+        }
     }
 }   
