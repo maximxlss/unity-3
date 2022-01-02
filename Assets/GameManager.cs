@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [NonSerialized] public float time;
     [NonSerialized] public float score;
     [NonSerialized] public bool playing;
+    [NonSerialized] public bool gameOver;
     private float startTime;
     private bool end;
 

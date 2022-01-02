@@ -60,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
             GameObject.Find("Particle System").GetComponent<ParticleSystem>().Play();
             ismovable = false;
             gm.playing = false;
+            gm.gameOver = true;
             Invoke(nameof(Restart), 3f);
         }
         else if (other.CompareTag("portal"))
