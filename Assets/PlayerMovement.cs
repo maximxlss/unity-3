@@ -1,93 +1,90 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Rigidbody rb;
-    public int state = 1;
-    public Vector3 position;
     public float strafeSpeed;
-    public float runSpeed;
+    public float partsOffset;
     public Transform[] targets;
-    private bool ismovable = true;
-    public bool addwatch;
-    private int scaling = 2;
+    public GameObject partPrefab;
+    private Rigidbody rb;
+    private int state = 1;
+    private Vector3 position;
     private GameManager gm;
-
-
+    private Stack<GameObject> parts = new Stack<GameObject>();
+    
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
-        rb.position = targets[1].position;
+        rb.MovePosition(targets[1].position);
+        position = targets[state].position;
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        parts.Push(Instantiate(partPrefab, this.transform));
     }
 
-    void Update()
-    {
-        position = targets[state].position;
-    }
-    
     void FixedUpdate()
     {
         rb.velocity = (position - rb.position) * strafeSpeed;
-        if (ismovable)
-        {
-            GameObject.Find("Particle System").transform.position = this.transform.position;
-        }
     }
 
     void OnTurnleft()
     {
         state = Math.Max(0, state - 1);
+        position = targets[state].position;
     }
     
     void OnTurnright()
     {
         state = Math.Min(2, state+1);
+        position = targets[state].position;
     }
-    
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollision(Collision collision)
     {
+        if (!gm.playing)
+            return;
         var other = collision.collider.gameObject;
         if (other.CompareTag("deg"))
         {
-            this.GetComponent<MeshRenderer>().enabled=false;
-            this.GetComponent<SphereCollider>().enabled=false;
-            GameObject.Find("Particle System").GetComponent<ParticleSystem>().Play();
-            ismovable = false;
-            gm.playing = false;
-            Invoke(nameof(Restart), 3f);
+            Destroy(other);
+            Destroy(parts.Pop());
+            if (parts.Count == 0)
+                Die();
         }
         else if (other.CompareTag("portal"))
         {
-            
             foreach (var col in other.GetComponentsInChildren<Collider>())
             {
                 col.enabled = false;
             }
-            transform.localScale = new Vector3(scaling,scaling,scaling);
-            var prt = GameObject.FindGameObjectsWithTag("portal");
-            scaling += 1;
+            parts.Push(Instantiate(partPrefab, this.transform));
+            parts.Peek().transform.localPosition = Vector3.back * partsOffset * (parts.Count - 1);
         }
-            
-        
     }
+    
+    // !!!
+    private void OnCollisionStay(Collision collisionInfo)
+    {
+        OnCollision(collisionInfo);
+    }
+    // !!!
+    private void OnCollisionEnter(Collision collisionInfo)
+    {
+        OnCollision(collisionInfo);
+    }
+
+    private void Die()
+    {
+        gm.playing = false;
+        Invoke(nameof(Restart), 2f);
+    }
+
     private void Restart()
     {
-        Debug.Log("GameOver");
-        if (addwatch == false)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);    
-        }
-        else
-        {
-            
-        }
-            
-        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }   
