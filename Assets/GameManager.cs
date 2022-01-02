@@ -11,9 +11,13 @@ public class GameManager : MonoBehaviour
     [NonSerialized] public float time;
     [NonSerialized] public float score;
     [NonSerialized] public bool playing;
-    [NonSerialized] public bool gameOver;
     private float startTime;
-    private bool end;
+
+    public void Play()
+    {
+        startTime = Time.timeSinceLevelLoad;
+        playing = true;
+    }
 
     private void Update()
     {
@@ -22,17 +26,6 @@ public class GameManager : MonoBehaviour
             // speed += acceleration * Time.deltaTime;
             score += speed * Time.deltaTime;
             time = Time.timeSinceLevelLoad - startTime;
-            end = true;
-        }
-    }
-
-    void OnTap()
-    {
-        if (!playing && end==false)
-        {
-            playing = true;
-            GameObject.Find("Tap to play").SetActive(false);
-            startTime = Time.timeSinceLevelLoad;
         }
     }
 }

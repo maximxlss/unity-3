@@ -166,6 +166,8 @@ GameObject:
   - component: {fileID: 476910509}
   - component: {fileID: 476910513}
   - component: {fileID: 476910512}
+  - component: {fileID: 476910511}
+  - component: {fileID: 476910510}
   m_Layer: 5
   m_Name: Tap to play
   m_TagString: Untagged
@@ -192,6 +194,48 @@ RectTransform:
   m_AnchoredPosition: {x: 0.00013735, y: -36.613964}
   m_SizeDelta: {x: 800, y: 1350.5}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &476910510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476910508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 251fa3d4e2206fb47b03a1cc07e7faf6, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: action map
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &476910511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476910508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06f97f7c844ca1242acd9419c654c1d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &476910512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,8 +307,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543316346}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 9.396358, y: 1, z: 18.615171}
+  m_LocalPosition: {x: 0, y: 0, z: 9.2}
+  m_LocalScale: {x: 9.396358, y: 1, z: 34.825264}
   m_Children: []
   m_Father: {fileID: 1336425610}
   m_RootOrder: 0
@@ -755,7 +799,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 890008579}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.816808, y: 44.469303, z: -103.156746}
+  m_LocalPosition: {x: 8.816808, y: 44.469303, z: -111.7}
   m_LocalScale: {x: 18.066912, y: 23.508514, z: 0.71512663}
   m_Children: []
   m_Father: {fileID: 1577549752}
